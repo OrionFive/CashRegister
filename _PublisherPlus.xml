@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Excluded>
+    <exclude>E:\Spiele\Steam\steamapps\common\RimWorld\Mods\CashRegister\.git</exclude>
+    <exclude>E:\Spiele\Steam\steamapps\common\RimWorld\Mods\CashRegister\Source\.vs</exclude>
+    <exclude>E:\Spiele\Steam\steamapps\common\RimWorld\Mods\CashRegister\Source\packages</exclude>
+    <exclude>E:\Spiele\Steam\steamapps\common\RimWorld\Mods\CashRegister\Textures\Things Old</exclude>
+    <exclude>E:\Spiele\Steam\steamapps\common\RimWorld\Mods\CashRegister\Textures\Things\PSDs</exclude>
+  </Excluded>
+</Configuration>

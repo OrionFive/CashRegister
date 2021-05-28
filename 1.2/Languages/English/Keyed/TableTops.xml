@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+	<!-- Tabletop -->
+	<MustPlaceOnTable>Must be placed on a table.</MustPlaceOnTable>
+	<MustPlaceOnFreeSurface>Must be placed on clear surface.</MustPlaceOnFreeSurface>
+	
+	<!-- Shifts -->
+	<TabRegisterShifts>Shifts</TabRegisterShifts>
+	
+</LanguageData>
