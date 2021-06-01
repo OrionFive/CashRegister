@@ -15,7 +15,7 @@ namespace CashRegister.TableTops
 			[HarmonyPostfix]
 			internal static void Postfix(Building building, AvoidGrid __instance)
 			{
-				TableTop_Events.onBuildingSpawned.Invoke(building, __instance.map);
+				TableTop_Events.onAnyBuildingSpawned.Invoke(building, __instance.map);
 			}
 		}
 
@@ -28,7 +28,7 @@ namespace CashRegister.TableTops
 			[HarmonyPostfix]
 			internal static void Postfix(Building building, AvoidGrid __instance)
 			{
-				TableTop_Events.onBuildingDespawned.Invoke(building, __instance.map);
+				TableTop_Events.onAnyBuildingDespawned.Invoke(building, __instance.map);
 			}
 		}
 	}
