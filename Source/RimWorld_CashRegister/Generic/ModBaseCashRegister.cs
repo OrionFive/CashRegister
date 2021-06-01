@@ -1,5 +1,3 @@
-using CashRegister.TableTops;
-using Gastronomy.TableTops;
 using HugsLib;
 using Verse;
 
@@ -17,9 +15,9 @@ namespace CashRegister
             settings = new Settings(Settings);
         }
 
-        public override void MapComponentsInitializing(Map map)
-        {
-            RegisterUtility.RefreshRegisters(map);
-        }
+        //public override void MapComponentsInitializing(Map map)
+        //{
+        //    RegisterUtility.RefreshRegisters(map);
+        //}
     }
 }

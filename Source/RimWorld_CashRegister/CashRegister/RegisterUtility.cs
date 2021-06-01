@@ -13,18 +13,20 @@ namespace CashRegister
         public static readonly ThingDef cashRegisterDef = DefDatabase<ThingDef>.GetNamedSilentFail("Gastronomy_CashRegister");
         public static readonly JobDef emptyRegisterDef = DefDatabase<JobDef>.GetNamedSilentFail("Gastronomy_EmptyRegister");
         public static readonly SoundDef kachingSoundDef = DefDatabase<SoundDef>.GetNamedSilentFail("CashRegister_Register_Kaching");
+        public static readonly AcceptanceReport rejectedNoMods = new AcceptanceReport("TabRegisterShiftsRejectedMissingMods".Translate());
+        public static readonly AcceptanceReport rejectedNoWork = new AcceptanceReport("TabRegisterShiftsRejectedNoWork".Translate());
 
         private static readonly Dictionary<Map, List<Building_CashRegister>> allRegisters = new Dictionary<Map, List<Building_CashRegister>>();
 
         static RegisterUtility()
         {
-            TableTop_Events.onBuildingSpawned.AddListener(OnBuildingSpawned);
-            TableTop_Events.onBuildingDespawned.AddListener(OnBuildingDespawned);
+            TableTop_Events.onAnyBuildingSpawned.AddListener(OnBuildingSpawned);
+            TableTop_Events.onAnyBuildingDespawned.AddListener(OnBuildingDespawned);
         }
 
         [NotNull]public static IList<Building_CashRegister> GetRegisters(Map map)
         {
-            if (map == null || !allRegisters.TryGetValue(map, out var list)) return Array.Empty<Building_CashRegister>();
+            if (map == null || !allRegisters.TryGetValue(map, out var list) || list == null) return Array.Empty<Building_CashRegister>();
             return list;
         }
 
@@ -33,7 +35,8 @@ namespace CashRegister
             return (Building_CashRegister)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(cashRegisterDef), PathEndMode.Touch, TraverseParms.For(pawn), 90f, x => x.Faction == pawn.Faction, null, 0, 30);
         }
 
-        public static void RefreshRegisters(Map map)
+        [Obsolete]
+        private static void RefreshRegisters(Map map)
         {
             if (allRegisters.TryGetValue(map, out var list))
             {
@@ -56,7 +59,7 @@ namespace CashRegister
                     list.Add(register);
                 }
                 else allRegisters.Add(map, new List<Building_CashRegister> {register});
-                Log.Message($"Added {register.Label} to map list.");
+                //Log.Message($"Added {register.Label} to map list.");
             }
         }
 
@@ -68,7 +71,7 @@ namespace CashRegister
                 {
                     list.RemoveAll(i => i == register);
                 }
-                Log.Message($"Removed {register.Label} from map list.");
+                //Log.Message($"Removed {register.Label} from map list.");
             }
         }
     }

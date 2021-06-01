@@ -1,6 +1,7 @@
 using Gastronomy.TableTops;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace CashRegister
 {
@@ -16,5 +17,6 @@ namespace CashRegister
 
 		public virtual void DrawGizmos() { }
 		public virtual void PostMapInit() { }
+		public abstract bool CanAssignToShift(Pawn pawn);
 	}
 }

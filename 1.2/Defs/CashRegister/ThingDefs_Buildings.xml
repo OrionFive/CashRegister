@@ -29,7 +29,7 @@
 		<constructionSkillPrerequisite>3</constructionSkillPrerequisite>
 		<interactionCellOffset>(0,0,1)</interactionCellOffset>
 		<inspectorTabs>
-		  <!-- <li>CashRegister.TableTops.ITab_Register</li> -->
+		  <li>CashRegister.Shifts.ITab_Register_Shifts</li>
 		</inspectorTabs>
 		<fillPercent>0.2</fillPercent>
 		<costStuffCount>35</costStuffCount>
@@ -41,10 +41,11 @@
 		  <ComponentIndustrial>1</ComponentIndustrial>
 		</costList>
 		<comps>
-		  <li Class="CompProperties_AssignableToPawn">
-			<drawAssignmentOverlay>true</drawAssignmentOverlay>
-			<maxAssignedPawnsCount>1000</maxAssignedPawnsCount>
-		  </li>
+			<li Class="CashRegister.Shifts.CompProperties_AssignableToPawn_Shifts">
+				<drawAssignmentOverlay>false</drawAssignmentOverlay>
+				<drawUnownedAssignmentOverlay>false</drawUnownedAssignmentOverlay>
+				<maxAssignedPawnsCount>1000</maxAssignedPawnsCount>
+			</li>
 		</comps>
 		<statBases>
 			<MaxHitPoints>70</MaxHitPoints>

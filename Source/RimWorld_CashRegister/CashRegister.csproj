@@ -89,7 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CashRegister\ITab_Register_Shifts.cs" />
+    <Compile Include="Shifts\CompAssignableToPawn_Shifts.cs" />
+    <Compile Include="Shifts\CompProperties_AssignableToPawn_Shifts.cs" />
+    <Compile Include="Shifts\ITab_Register_Shifts.cs" />
+    <Compile Include="Shifts\Shift.cs" />
     <Compile Include="Generic\Settings.cs" />
     <Compile Include="CashRegister\ITab_Register.cs" />
     <Compile Include="CashRegister\JobDriver_EmptyRegister.cs" />

@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CashRegister;
+using CashRegister.Shifts;
 using CashRegister.TableTops;
-using CashRegister.Timetable;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -14,13 +15,13 @@ namespace Gastronomy.TableTops
     {
         private StorageSettings storageSettings;
         protected ThingOwner innerContainer;
-        
-        public TimetableBool timetableOpen;
 
-        public CompAssignableToPawn CompAssignableToPawn => GetComp<CompAssignableToPawn>();
+        public List<Shift> shifts = new List<Shift>();
+        public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
         public float radius;
-        public ITab_Register[] tabs;
-        public bool IsActive => timetableOpen.CurrentAssignment(Map);
+        protected ITab_Register[] tabs;
+
+        public bool IsActive => shifts.Any(s => s.IsActive && s.assigned.Any(p=>p?.MapHeld == Map));
 
         public Building_CashRegister()
         {
@@ -33,23 +34,21 @@ namespace Gastronomy.TableTops
             Scribe_Values.Look(ref radius, "radius", 20);
             Scribe_Deep.Look(ref storageSettings, "storageSettings", this);
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
-            Scribe_Deep.Look(ref timetableOpen, "timetableOpen");
+            Scribe_Collections.Look(ref shifts, "shifts", LookMode.Deep, Array.Empty<object>());
             InitDeepFieldsInitial();
         }
 
         private void InitDeepFieldsInitial()
         {
-            timetableOpen ??= new TimetableBool();
+            shifts ??= new List<Shift>();
         }
 
         public override void PostMapInit()
         {
             base.PostMapInit();
-            Log.Message($"Tabs: {def.inspectorTabs.Select(t => t?.Name).ToCommaList()}");
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
             foreach (var tab in tabs)
             {
-                Log.Message($"Tab: {tab?.labelKey}");
                 tab.PostMapInit();
             }
         }
@@ -59,6 +58,7 @@ namespace Gastronomy.TableTops
             base.PostMake();
             storageSettings = GetNewStorageSettings();
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
+            shifts.Add(new Shift());
         }
 
         public void DrawGizmos()
@@ -78,7 +78,7 @@ namespace Gastronomy.TableTops
 
         public override string GetInspectString() => innerContainer?.ContentsString.CapitalizeFirst();
 
-        public StorageSettings GetStoreSettings() => storageSettings ?? (storageSettings = GetNewStorageSettings());
+        public StorageSettings GetStoreSettings() => storageSettings ??= GetNewStorageSettings();
 
         private StorageSettings GetNewStorageSettings()
         {
@@ -99,31 +99,34 @@ namespace Gastronomy.TableTops
 
         public void GetChildHolders(List<IThingHolder> outChildren) => ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
 
-        public ThingOwner GetDirectlyHeldThings() => innerContainer ?? (innerContainer = new ThingOwner<Thing>(this, false));
+        public ThingOwner GetDirectlyHeldThings() => innerContainer ??= new ThingOwner<Thing>(this, false);
 
         
-        public override IEnumerable<Gizmo> GetGizmos()
+        //public override IEnumerable<Gizmo> GetGizmos()
+        //{
+        //    foreach (var gizmo in base.GetGizmos())
+        //    {
+        //        // Skip "Assign owner"
+        //        if (gizmo is Command_Action action && action.hotKey == KeyBindingDefOf.Misc4) continue;
+        //        yield return gizmo;
+        //    }
+        //}
+
+        public AcceptanceReport CanAssignToShift(Pawn pawn)
         {
-            foreach (var gizmo in base.GetGizmos())
+            if (tabs.Length <= 1) return RegisterUtility.rejectedNoMods;
+            
+            foreach (var tab in tabs)
             {
-                // Skip "Assign owner"
-                if (gizmo is Command_Action action && action.hotKey == KeyBindingDefOf.Misc4) continue;
-                yield return gizmo;
+                if( tab.CanAssignToShift(pawn)) return AcceptanceReport.WasAccepted;
             }
 
-            if (def.building.bed_humanlike && Faction == Faction.OfPlayer)
-            {
-                Command_Action command_Action = new Command_Action
-                {
-                    defaultLabel = "CommandThingSetPatientsLabel".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner"),
-                    defaultDesc = "CommandBedSetPatientsDesc".Translate(),
-                    action = delegate { Find.WindowStack.Add(new Dialog_AssignBuildingOwner(CompAssignableToPawn)); },
-                    hotKey = KeyBindingDefOf.Misc4
-                };
-                yield return command_Action;
-            }
+            return RegisterUtility.rejectedNoWork;
         }
 
+        public bool HasToWork(Pawn pawn)
+        {
+            return shifts.Any(s => s.timetable.CurrentAssignment(pawn.Map) && s.assigned.Contains(pawn));
+        }
     }
 }

@@ -7,5 +7,11 @@
 	
 	<!-- Shifts -->
 	<TabRegisterShifts>Shifts</TabRegisterShifts>
+	<TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+	<TabRegisterShiftsRemove>×</TabRegisterShiftsRemove>
+	<TabRegisterShiftsEmpty>No one</TabRegisterShiftsEmpty>
+	<TabRegisterShiftsAssign>Assign</TabRegisterShiftsAssign>
+	<TabRegisterShiftsRejectedMissingMods>No mod uses this register</TabRegisterShiftsRejectedMissingMods>
+	<TabRegisterShiftsRejectedNoWork>Doesn't do this kind of work</TabRegisterShiftsRejectedNoWork>
 	
 </LanguageData>
