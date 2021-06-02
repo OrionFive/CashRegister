@@ -19,7 +19,7 @@ namespace Gastronomy.TableTops
         public List<Shift> shifts = new List<Shift>();
         public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
         public float radius;
-        public bool standby;
+        public bool standby = true;
         protected ITab_Register[] tabs;
 
         public bool IsActive => shifts.Any(s => s.IsActive && s.assigned.Any(p=>p?.MapHeld == Map));
@@ -65,7 +65,9 @@ namespace Gastronomy.TableTops
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            return tabs.SelectMany(tab => tab.GetGizmos());
+            foreach (var gizmo in base.GetGizmos()) yield return gizmo;
+
+            foreach (var gizmo in tabs.SelectMany(tab => tab.GetGizmos())) yield return gizmo;
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
