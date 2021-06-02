@@ -117,7 +117,7 @@ namespace CashRegister.Shifts
 					hotKey = KeyBindingDefOf.Command_TogglePower,
 					defaultLabel = "TabRegisterShiftsStandby".Translate(),
 					defaultDesc = "TabRegisterShiftsStandbyDesc".Translate(),
-					icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner"),
+					icon = ContentFinder<Texture2D>.Get("UI/Commands/StandByJob"),
 					isActive = () => Register.standby,
 					toggleAction = () => Register.standby = !Register.standby
 				};
