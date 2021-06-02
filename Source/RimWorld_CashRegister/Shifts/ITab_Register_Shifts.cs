@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -105,11 +106,23 @@ namespace CashRegister.Shifts
 			}
 		}
 
-		public override void TabUpdate()
-		{
-			Register.DrawGizmos();
-		}
-
 		public override bool CanAssignToShift(Pawn pawn) => false;
+
+		public override IEnumerable<Gizmo> GetGizmos()
+		{
+			if (Register.Faction == Faction.OfPlayer)
+			{
+				var toggle = new Command_Toggle
+				{
+					hotKey = KeyBindingDefOf.Command_TogglePower,
+					defaultLabel = "TabRegisterShiftsStandby".Translate(),
+					defaultDesc = "TabRegisterShiftsStandbyDesc".Translate(),
+					icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner"),
+					isActive = () => Register.standby,
+					toggleAction = () => Register.standby = !Register.standby
+				};
+				yield return toggle;
+			}
+		}
 	}
 }

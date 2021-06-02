@@ -13,5 +13,7 @@
 	<TabRegisterShiftsAssign>Assign</TabRegisterShiftsAssign>
 	<TabRegisterShiftsRejectedMissingMods>No mod uses this register</TabRegisterShiftsRejectedMissingMods>
 	<TabRegisterShiftsRejectedNoWork>Doesn't do this kind of work</TabRegisterShiftsRejectedNoWork>
+	<TabRegisterShiftsStandby>Stand by</TabRegisterShiftsStandby>
+	<TabRegisterShiftsStandbyDesc>Colonists with an active shift will wait here. Only more important tasks have priority.</TabRegisterShiftsStandbyDesc>
 	
 </LanguageData>

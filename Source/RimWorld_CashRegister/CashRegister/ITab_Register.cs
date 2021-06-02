@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Gastronomy.TableTops;
 using RimWorld;
 using UnityEngine;
@@ -15,8 +16,12 @@ namespace CashRegister
 			//labelKey = "TabRegister";
 		}
 
-		public virtual void DrawGizmos() { }
 		public virtual void PostMapInit() { }
 		public abstract bool CanAssignToShift(Pawn pawn);
+
+		public virtual IEnumerable<Gizmo> GetGizmos()
+		{
+			yield break;
+		}
 	}
 }

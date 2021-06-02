@@ -19,6 +19,7 @@ namespace Gastronomy.TableTops
         public List<Shift> shifts = new List<Shift>();
         public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
         public float radius;
+        public bool standby;
         protected ITab_Register[] tabs;
 
         public bool IsActive => shifts.Any(s => s.IsActive && s.assigned.Any(p=>p?.MapHeld == Map));
@@ -32,6 +33,7 @@ namespace Gastronomy.TableTops
         {
             base.ExposeData();
             Scribe_Values.Look(ref radius, "radius", 20);
+            Scribe_Values.Look(ref standby, "standby", true);
             Scribe_Deep.Look(ref storageSettings, "storageSettings", this);
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
             Scribe_Collections.Look(ref shifts, "shifts", LookMode.Deep, Array.Empty<object>());
@@ -61,12 +63,9 @@ namespace Gastronomy.TableTops
             shifts.Add(new Shift());
         }
 
-        public void DrawGizmos()
+        public override IEnumerable<Gizmo> GetGizmos()
         {
-            foreach (var tab in tabs)
-            {
-                tab.DrawGizmos();
-            }
+            return tabs.SelectMany(tab => tab.GetGizmos());
         }
 
         public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
