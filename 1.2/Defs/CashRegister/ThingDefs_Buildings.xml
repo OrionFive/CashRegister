@@ -52,7 +52,7 @@
 			<WorkToBuild>500</WorkToBuild>
 			<Mass>1</Mass>
 			<Flammability>0.2</Flammability>
-			<Beauty>5</Beauty>
+			<Beauty>-5</Beauty>
 		</statBases>
 		<selectable>true</selectable>
 		<building>
