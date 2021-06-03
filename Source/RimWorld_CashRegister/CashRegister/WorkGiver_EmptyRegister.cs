@@ -26,10 +26,12 @@ namespace Gastronomy.TableTops
 				var silver = register.GetDirectlyHeldThings()?.FirstOrDefault();
 				if (silver != null)
 				{
-					return JobMaker.MakeJob(RegisterUtility.emptyRegisterDef, t, silver);
+					if (StoreUtility.TryFindBestBetterStorageFor(silver, pawn, pawn.Map, StoreUtility.CurrentStoragePriorityOf(silver), pawn.Faction, out _, out _))
+					{
+						return JobMaker.MakeJob(RegisterUtility.emptyRegisterDef, t, silver);
+					}
 				}
 			}
-
 			return null;
 		}
 	}

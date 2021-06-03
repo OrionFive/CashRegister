@@ -33,12 +33,14 @@ namespace Gastronomy.TableTops
 		{
 			if (HaulAIUtility.PawnCanAutomaticallyHaulFast(pawn, Silver, false))
 			{
-				pawn.jobs.StartJob(HaulAIUtility.HaulToStorageJob(pawn, Silver), JobCondition.Succeeded);
+				var haulJob = HaulAIUtility.HaulToStorageJob(pawn, Silver);
+				if (haulJob != null)
+				{
+					pawn.jobs.StartJob(haulJob, JobCondition.Succeeded);
+					return;
+				}
 			}
-			else
-			{
-				pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
-			}
+			pawn.jobs.EndCurrentJob(JobCondition.Incompletable);
 		}
 
 		private void GetSilver()
