@@ -43,6 +43,13 @@ namespace Gastronomy.TableTops
             innerContainer = new ThingOwner<Thing>(this, false);
         }
 
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            // Make sure every shift has a map
+            foreach (var shift in shifts) shift.map ??= Map;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -74,7 +81,7 @@ namespace Gastronomy.TableTops
             base.PostMake();
             storageSettings = GetNewStorageSettings();
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
-            shifts.Add(new Shift());
+            shifts.Add(new Shift{map = Map});
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
