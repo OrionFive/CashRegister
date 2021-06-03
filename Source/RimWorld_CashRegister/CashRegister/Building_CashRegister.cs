@@ -21,8 +21,22 @@ namespace Gastronomy.TableTops
         public float radius;
         public bool standby = true;
         protected ITab_Register[] tabs;
+        private float lastActiveCheck;
+        private bool isActive;
 
-        public bool IsActive => shifts.Any(s => s.IsActive && s.assigned.Any(p=>p?.MapHeld == Map));
+        public bool IsActive
+        {
+            get
+            {
+                // Gets called a lot. Optimized.
+                if (Time.realtimeSinceStartup > lastActiveCheck + 0.7f)
+                {
+                    isActive = shifts.Any(s => s.IsActive && s.assigned.Any(p => p?.MapHeld == Map));
+                    lastActiveCheck = Time.realtimeSinceStartup;
+                }
+                return isActive;
+            }
+        }
 
         public Building_CashRegister()
         {
