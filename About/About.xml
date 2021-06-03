@@ -19,7 +19,7 @@
 	</loadAfter>
     <incompatibleWith>
     </incompatibleWith>
-	<description>Build a cash register to control the settings of your restaurant.
+	<description>Build a cash register to control the settings of your restaurant. Doesn't do anything on its own.
 	
 Has to be loaded before mods that depend on it.</description>
 </ModMetaData>
