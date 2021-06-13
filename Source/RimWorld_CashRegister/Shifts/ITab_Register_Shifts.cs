@@ -73,7 +73,7 @@ namespace CashRegister.Shifts
 
 		private void DrawShift(Rect rectTable, Rect rectLabel, Shift shift, ref float height)
 		{
-			var names = shift.assigned.Any() ? shift.assigned.Select(a => a.Name.ToStringShort).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
+			var names = shift.assigned.Any() ? shift.assigned.Select(pawn => pawn?.Name.ToStringShort).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
 			var rectNames = new Rect(rectLabel) {width = rectLabel.width * 0.6f};
 			var rectAssign = new Rect(rectLabel) {xMin = rectNames.xMax, height = height};
 			DrawLabel(rectNames, names, out var labelHeight);

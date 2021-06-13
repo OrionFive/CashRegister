@@ -32,6 +32,10 @@ namespace Gastronomy.TableTops
                 if (Time.realtimeSinceStartup > lastActiveCheck + 0.7f)
                 {
                     isActive = shifts.Any(s => s.IsActive && s.assigned.Any(p => p?.MapHeld == Map));
+                    //foreach (var shift in shifts)
+                    //{
+                    //    Log.Message($"Shift of {shift.assigned.Select(p => p?.LabelShort).ToCommaList()}: active? {shift.IsActive}");
+                    //}
                     lastActiveCheck = Time.realtimeSinceStartup;
                 }
                 return isActive;

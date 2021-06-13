@@ -19,6 +19,8 @@ namespace CashRegister.Shifts
 			Scribe_Deep.Look(ref timetable, "timetable");
 			Scribe_References.Look(ref map, "map");
 			InitDeepFieldsInitial();
+
+			assigned.RemoveAll(p => p == null || p.Dead);
 		}
 
 		private void InitDeepFieldsInitial()
