@@ -110,7 +110,7 @@ namespace CashRegister.Shifts
 
 		public override IEnumerable<Gizmo> GetGizmos()
 		{
-			if (Register.Faction == Faction.OfPlayer)
+			if (Register?.Faction == Faction.OfPlayer)
 			{
 				var toggle = new Command_Toggle
 				{
