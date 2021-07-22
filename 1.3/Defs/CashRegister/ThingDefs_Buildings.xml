@@ -2,11 +2,11 @@
 <Defs>
   
   	<ThingDef ParentName="BuildingBase">
-		<defName>Gastronomy_CashRegister</defName>
+		<defName>CashRegister_CashRegister</defName>
 		<label>cash register</label>
 		<description>A cash register. Workplace for your waiters. From here you can control your restaurant.</description>
 		<category>Building</category>
-		<thingClass>Gastronomy.TableTops.Building_CashRegister</thingClass>
+		<thingClass>CashRegister.Building_CashRegister</thingClass>
 		<graphicData>
 			<texPath>Things/CashRegister</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>

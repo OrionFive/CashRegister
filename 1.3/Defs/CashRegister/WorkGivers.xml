@@ -2,9 +2,9 @@
 <Defs>
 
   <WorkGiverDef>
-    <defName>Gastronomy_EmptyRegister</defName>
+    <defName>CashRegister_EmptyRegister</defName>
     <label>empty register</label>
-    <giverClass>Gastronomy.TableTops.WorkGiver_EmptyRegister</giverClass>
+    <giverClass>CashRegister.WorkGiver_EmptyRegister</giverClass>
     <workType>Hauling</workType>
     <priorityInType>18</priorityInType>
     <!-- <fixedBillGiverDefs> -->

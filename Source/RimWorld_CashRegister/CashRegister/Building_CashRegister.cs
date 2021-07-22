@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CashRegister;
 using CashRegister.Shifts;
 using CashRegister.TableTops;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-// TODO: Rename for 1.3, kept to not break saves
-namespace Gastronomy.TableTops
+namespace CashRegister
 {
     public class Building_CashRegister : Building_TableTop, IHaulDestination, IThingHolder
     {

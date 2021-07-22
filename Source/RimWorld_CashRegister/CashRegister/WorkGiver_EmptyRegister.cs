@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using CashRegister;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
-// TODO: Rename for 1.3, kept to not break saves
-namespace Gastronomy.TableTops
+namespace CashRegister
 {
 	public class WorkGiver_EmptyRegister : WorkGiver_Scanner
 	{

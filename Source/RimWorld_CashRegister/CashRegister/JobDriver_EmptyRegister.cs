@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
-// TODO: Rename for 1.3, kept to not break saves
-namespace Gastronomy.TableTops
+namespace CashRegister
 {
 	public class JobDriver_EmptyRegister : JobDriver
 	{
