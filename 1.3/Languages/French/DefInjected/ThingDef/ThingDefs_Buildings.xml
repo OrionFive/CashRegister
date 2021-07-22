@@ -3,9 +3,9 @@
 
   <CashRegister_CashRegister.label>caisse</CashRegister_CashRegister.label>
   <CashRegister_CashRegister.description>Une caisse enregistreuse. Lieu de travail pour vos serveurs. De là, vous pouvez contrôler votre restaurant.</CashRegister_CashRegister.description>
-  <CashRegister_CashRegister_Blueprint.label>caisse (plan)</CashRegister_CashRegister_Blueprint.label>
-  <CashRegister_CashRegister_Blueprint_Install.label>caisse (installation)</CashRegister_CashRegister_Blueprint_Install.label>
-  <CashRegister_CashRegister_Frame.label>caisse (construction)</CashRegister_CashRegister_Frame.label>
-  <CashRegister_CashRegister_Frame.description>Une caisse enregistreuse. Lieu de travail pour vos serveurs. De là, vous pouvez contrôler votre restaurant.</CashRegister_CashRegister_Frame.description>
+  <Blueprint_CashRegister_CashRegister.label>caisse (plan)</Blueprint_CashRegister_CashRegister.label>
+  <Blueprint_Install_CashRegister_CashRegister.label>caisse (installation)</Blueprint_Install_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.label>caisse (construction)</Frame_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.description>Une caisse enregistreuse. Lieu de travail pour vos serveurs. De là, vous pouvez contrôler votre restaurant.</Frame_CashRegister_CashRegister.description>
 
 </LanguageData>
