@@ -29,11 +29,21 @@
 	<PackageReference Include="Krafs.Rimworld.Ref" Version="*" GeneratePathProperty="true" />
     <PackageReference Include="Lib.Harmony" Version="*" ExcludeAssets="runtime" />
     <PackageReference Include="TaskPubliciser" Version="1.0.3" />
-
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="*" />
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib" Version="*" ExcludeAssets="runtime" />
   </ItemGroup>
   
+  <!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(TargetDir)..\..\..\Gastronomy\1.3\Assemblies\"</PostBuildEvent>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+  </ItemGroup>
+
 
   <Target Name="MyCode" BeforeTargets="UpdateReferences">
     <!-- Set our variables -->
