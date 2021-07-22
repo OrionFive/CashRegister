@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+	<!-- Tabletop -->
+	<MustPlaceOnTable>Doit être placé sur une table.</MustPlaceOnTable>
+	<MustPlaceOnFreeSurface>Doit être placé sur une surface nette.</MustPlaceOnFreeSurface>
+	
+	<!-- Shifts -->
+	<TabRegisterShifts>Employés</TabRegisterShifts>
+	<TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+	<TabRegisterShiftsRemove>-</TabRegisterShiftsRemove>
+	<TabRegisterShiftsEmpty>Personne</TabRegisterShiftsEmpty>
+	<TabRegisterShiftsAssign>Assigner</TabRegisterShiftsAssign>
+	<TabRegisterShiftsRejectedMissingMods>Aucun mod n'utilise ce registre</TabRegisterShiftsRejectedMissingMods>
+	<TabRegisterShiftsRejectedNoWork>Ne fait pas ce genre de travail</TabRegisterShiftsRejectedNoWork>
+	<TabRegisterShiftsStandby>En attente</TabRegisterShiftsStandby>
+	<TabRegisterShiftsStandbyDesc>Les colons actifs attendront ici. Seules les tâches les plus importantes ont la priorité.</TabRegisterShiftsStandbyDesc>
+	
+</LanguageData>

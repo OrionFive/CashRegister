@@ -19,7 +19,7 @@ namespace CashRegister.Shifts
 
 		public override bool IsVisible => true;
 
-		protected override void FillTab()
+		public override void FillTab()
 		{
 			const int WidthLabel = 300;
 			const int MinHeight = 30;

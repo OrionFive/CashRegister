@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Gastronomy.TableTops;
 using RimWorld;
 using Verse;
 
@@ -7,7 +6,7 @@ namespace CashRegister.Shifts
 {
 	public class CompAssignableToPawn_Shifts : CompAssignableToPawn
 	{
-		protected override bool ShouldShowAssignmentGizmo() => false;
+		public override bool ShouldShowAssignmentGizmo() => false;
 		public Building_CashRegister Register => (Building_CashRegister) parent;
 
 		public void SetAssigned(List<Pawn> assigned)

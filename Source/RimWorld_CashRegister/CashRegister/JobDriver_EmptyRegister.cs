@@ -19,7 +19,7 @@ namespace Gastronomy.TableTops
 			return pawn.Reserve(register, job, 1, 1, null, errorOnFailed);
 		}
 
-		protected override IEnumerable<Toil> MakeNewToils()
+		public override IEnumerable<Toil> MakeNewToils()
 		{
 			this.FailOnDestroyedOrNull(IndexRegister);
 			this.FailOnForbidden(IndexRegister);
