@@ -9,7 +9,7 @@ namespace CashRegister.Timetable
 	{
 		private static bool lastAssignmentValue;
 
-		public static void DoCell(Rect rect, TimetableBool timetable)
+		public static void DoCell(Rect rect, TimetableBool timetable, Map map)
 		{
 			//if (pawn.timetable != null)
 			{
@@ -18,7 +18,7 @@ namespace CashRegister.Timetable
 				for (int i = 0; i < 24; i++)
 				{
 					Rect rect2 = new Rect(num, rect.y, num2, rect.height);
-					DoTimeAssignment(rect2, timetable, i);
+					DoTimeAssignment(rect2, timetable, i, map);
 					num += num2;
 				}
 
@@ -46,7 +46,7 @@ namespace CashRegister.Timetable
 			Text.Anchor = TextAnchor.UpperLeft;
 		}
 
-		private static void DoTimeAssignment(Rect rect, TimetableBool table, int hour)
+		private static void DoTimeAssignment(Rect rect, TimetableBool table, int hour, Map map)
 		{
 			if(table == null) 
 			{
@@ -56,7 +56,7 @@ namespace CashRegister.Timetable
 			rect = rect.ContractedBy(1f);
 			bool mouseButton = Input.GetMouseButton(0);
 			bool assignment = table.GetAssignment(hour);
-			GUI.DrawTexture(rect, table.GetTexture(assignment));
+			GUI.DrawTexture(rect, table.GetTexture(assignment, GenLocalDate.HourOfDay(map) == hour));
 			if (!mouseButton)
 			{
 				MouseoverSounds.DoRegion(rect);

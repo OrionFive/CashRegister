@@ -83,7 +83,7 @@ namespace CashRegister.Shifts
 				Register.CompAssignableToPawn.SetAssigned(shift.assigned);
 				Find.WindowStack.Add(new Dialog_AssignBuildingOwner(Register.CompAssignableToPawn));
 			}
-			TimetableUtility.DoCell(new Rect(rectTable) {height = height}, shift.timetable);
+			TimetableUtility.DoCell(new Rect(rectTable) {height = height}, shift.timetable, Register.Map);
 			height = Mathf.Max(height, labelHeight);
 		}
 

@@ -12,7 +12,7 @@ namespace CashRegister.Timetable
 	public class TimetableBool : IExposable
 	{
 		public List<bool> times;
-		private Dictionary<bool, Texture2D> colorTextureInt;
+		private Texture2D[] colorTextureInt;
 
 		public bool CurrentAssignment(Map map) => times[GenLocalDate.HourOfDay(map)];
 
@@ -41,19 +41,18 @@ namespace CashRegister.Timetable
 			times[hour] = ta;
 		}
 
-		public Texture2D GetTexture(bool assignment)
+		public Texture2D GetTexture(bool assignment, bool isActive)
 		{
-			if (colorTextureInt == null)
+			colorTextureInt ??= new[]
 			{
-				colorTextureInt = new Dictionary<bool, Texture2D>
-				{
-					{true, SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Work.color)}, 
-					{false, SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Sleep.color)}
-				};
-			}
+				SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Work.color), 
+				SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Sleep.color),
+				SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Work.color*1.3f), 
+				SolidColorMaterials.NewSolidColorTexture(TimeAssignmentDefOf.Sleep.color*1.3f)
+			};
 
-			if (colorTextureInt.TryGetValue(assignment, out var texture)) return texture;
-			throw new Exception("Missing texture!");
+			var index = (assignment ? 0 : 1) + (isActive ? 2 : 0);
+			return colorTextureInt[index];
 		}
 	}
 }
