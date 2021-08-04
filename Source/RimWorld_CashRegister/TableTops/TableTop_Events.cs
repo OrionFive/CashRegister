@@ -13,8 +13,8 @@ namespace CashRegister.TableTops
 
 		[NotNull]public static readonly UnityEventThingBuilding onThingAffectedByDespawnedBuilding = new UnityEventThingBuilding();
 		[NotNull]public static readonly UnityEventThingBuilding onThingAffectedBySpawnedBuilding = new UnityEventThingBuilding();
-		[NotNull]public static UnityEventBuildingMap onAnyBuildingSpawned = new UnityEventBuildingMap();
-		[NotNull]public static UnityEventBuildingMap onAnyBuildingDespawned = new UnityEventBuildingMap();
+		[NotNull]public static readonly UnityEventBuildingMap onAnyBuildingSpawned = new UnityEventBuildingMap();
+		[NotNull]public static readonly UnityEventBuildingMap onAnyBuildingDespawned = new UnityEventBuildingMap();
 
 		static TableTop_Events()
 		{

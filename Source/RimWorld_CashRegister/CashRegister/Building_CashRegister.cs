@@ -29,7 +29,7 @@ namespace CashRegister
                 // Gets called a lot. Optimized.
                 if (Time.realtimeSinceStartup > lastActiveCheck + 0.7f)
                 {
-                    isActive = shifts.Any(s => s.IsActive && s.assigned.Any(p => p?.MapHeld == Map));
+                    isActive = shifts.Any(s => s.IsActive && s.assigned.Any(IsCapable));
                     //foreach (var shift in shifts)
                     //{
                     //    Log.Message($"Shift of {shift.assigned.Select(p => p?.LabelShort).ToCommaList()}: active? {shift.IsActive}");
@@ -38,6 +38,17 @@ namespace CashRegister
                 }
                 return isActive;
             }
+        }
+
+        private bool IsCapable(Pawn p)
+        {
+            // On this map and not resting or down
+            return p?.MapHeld == Map && !p.Downed && (!Settings.inactiveIfEveryoneIsSleeping || !IsSleeping(p));
+        }
+
+        private static bool IsSleeping(Pawn pawn)
+        {
+            return !pawn.health.capacities.CanBeAwake || pawn.CurJobDef == JobDefOf.LayDown || pawn.CurJobDef == JobDefOf.LayDownResting;
         }
 
         public Building_CashRegister()

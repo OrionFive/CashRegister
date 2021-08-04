@@ -5,11 +5,11 @@ namespace CashRegister
 {
 	internal class Settings
 	{
-		//public static SettingHandle<bool> showAlertNoDedicatedWaiter;
-		//
+		public static SettingHandle<bool> inactiveIfEveryoneIsSleeping;
+		
 		public Settings(ModSettingsPack settings)
 		{
-		//	showAlertNoDedicatedWaiter = settings.GetHandle("showAlertNoDedicatedWaiter", "ShowAlertNoDedicatedWaiter".Translate(), "ShowAlertNoDedicatedWaiterDesc".Translate(), true);
+			inactiveIfEveryoneIsSleeping = settings.GetHandle("inactiveIfEveryoneIsSleeping", "InactiveIfEveryoneIsSleeping".Translate(), "InactiveIfEveryoneIsSleepingDesc".Translate(), true);
 		}
 
 		// Make sure that it still works when referenced settings are null!
