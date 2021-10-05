@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+	<!-- Tabletop -->
+	<MustPlaceOnTable>テーブルの上に置いてください。</MustPlaceOnTable>
+	<MustPlaceOnFreeSurface>綺麗な面に置いてください。</MustPlaceOnFreeSurface>
+	
+	<!-- Shifts -->
+	<TabRegisterShifts>シフト</TabRegisterShifts>
+	<TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+	<TabRegisterShiftsRemove>-</TabRegisterShiftsRemove>
+	<TabRegisterShiftsEmpty>無人</TabRegisterShiftsEmpty>
+	<TabRegisterShiftsAssign>割当</TabRegisterShiftsAssign>
+	<TabRegisterShiftsRejectedMissingMods>清算レジMODを使用しているMODはありません</TabRegisterShiftsRejectedMissingMods>
+	<TabRegisterShiftsRejectedNoWork>この種の仕事をしません</TabRegisterShiftsRejectedNoWork>
+	<TabRegisterShiftsStandby>待機中</TabRegisterShiftsStandby>
+	<TabRegisterShiftsStandbyDesc>アクティブなシフトを持つ入植者はここで待ちます。 より重要なタスクのみが優先されます。</TabRegisterShiftsStandbyDesc>
+	
+	<!-- Settings -->
+	<InactiveIfEveryoneIsSleeping>全員が寝ている場合に非アクティブにします</InactiveIfEveryoneIsSleeping>
+	<InactiveIfEveryoneIsSleepingDesc>現在割り当てられているすべての入植者が眠っているとき、この清算レジとすべてのアクティブなシフトは無効になります。 彼らがダウンしている、またはキャラバンにいる場合、どちらの方法でも同じことが起こります。</InactiveIfEveryoneIsSleepingDesc>
+	
+</LanguageData>
