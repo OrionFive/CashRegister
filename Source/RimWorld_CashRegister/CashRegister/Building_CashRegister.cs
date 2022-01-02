@@ -27,7 +27,7 @@ namespace CashRegister
         protected ITab_Register[] tabs;
         private float lastActiveCheck;
         private bool isActive;
-        private bool includeRegion;
+        private bool includeRegion = true;
         public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
         private readonly List<IntVec3> fields = new List<IntVec3>();
 
@@ -76,7 +76,7 @@ namespace CashRegister
         {
             base.ExposeData();
             Scribe_Values.Look(ref radius, "radius", 20);
-            Scribe_Values.Look(ref includeRegion, "includeRegion");
+            Scribe_Values.Look(ref includeRegion, "includeRegion", true);
             Scribe_Values.Look(ref standby, "standby", true);
             Scribe_Deep.Look(ref storageSettings, "storageSettings", this);
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
