@@ -5,22 +5,31 @@ using CashRegister.Shifts;
 using CashRegister.TableTops;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Events;
 using Verse;
 
 namespace CashRegister
 {
+    public class UnityEventCashRegister : UnityEvent<Building_CashRegister> { }
+
     public class Building_CashRegister : Building_TableTop, IHaulDestination, IThingHolder
     {
+        public static Color radiusColor = new Color(115 / 256f, 203 / 256f, 115 / 256f);
+        public const int RadiusStep = 3;
+        public const int InfiniteRadius = 15*RadiusStep; // = 45; At around 55 drawing radius breaks anyway
         private StorageSettings storageSettings;
         protected ThingOwner innerContainer;
 
         public List<Shift> shifts = new List<Shift>();
         public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
-        public float radius;
+        private float radius = 20;
         public bool standby = true;
         protected ITab_Register[] tabs;
         private float lastActiveCheck;
         private bool isActive;
+        private bool includeRegion;
+        public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
+        private readonly List<IntVec3> fields = new List<IntVec3>();
 
         public bool IsActive
         {
@@ -67,6 +76,7 @@ namespace CashRegister
         {
             base.ExposeData();
             Scribe_Values.Look(ref radius, "radius", 20);
+            Scribe_Values.Look(ref includeRegion, "includeRegion");
             Scribe_Values.Look(ref standby, "standby", true);
             Scribe_Deep.Look(ref storageSettings, "storageSettings", this);
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
@@ -130,6 +140,21 @@ namespace CashRegister
 
         public bool StorageTabVisible => false;
         public bool ShouldEmpty => GetDirectlyHeldThings()?.Any(t => t.def == ThingDefOf.Silver) == true;
+
+        public float Radius
+        {
+            get => radius;
+            set => ChangeRadius(value);
+        }
+
+        private void ChangeRadius(float value)
+        {
+            radius = Mathf.Clamp(value, 0, InfiniteRadius);
+            onRadiusChanged.Invoke(this);
+        }
+
+        public bool IncludeRegion => includeRegion;
+
         public bool Accepts(Thing t) => t.def == ThingDefOf.Silver;
 
         public void GetChildHolders(List<IThingHolder> outChildren) => ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
@@ -162,6 +187,30 @@ namespace CashRegister
         public bool HasToWork(Pawn pawn)
         {
             return shifts.Any(s => s.timetable.CurrentAssignment(pawn.Map) && s.assigned.Contains(pawn));
+        }
+
+        public void ToggleIncludeRegion()
+        {
+            includeRegion = !includeRegion;
+            onRadiusChanged.Invoke(this);
+        }
+
+        public void DrawFieldEdges()
+        {
+            fields.Clear();
+            if (radius >= InfiniteRadius) return;
+
+            if (includeRegion)
+            {
+                var cells = this.GetRoom(RegionType.Normal)?.Cells;
+                if (cells != null) fields.AddRange(cells);
+            }
+
+            fields.AddRange(GenRadial.RadialCellsAround(Position, radius, true));
+            Color color = radiusColor;
+            color.a = Pulser.PulseBrightness(1f, 0.6f);
+            GenDraw.DrawFieldEdges(fields, color);
+            fields.Clear();
         }
     }
 }
