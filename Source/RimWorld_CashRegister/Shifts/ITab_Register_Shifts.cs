@@ -122,9 +122,6 @@ namespace CashRegister.Shifts
 					toggleAction = () => Register.standby = !Register.standby
 				};
 				yield return toggle;
-                // Gizmo for drawing radius settings
-                var registers = Find.Selector.SelectedObjects.OfType<Building_CashRegister>().ToArray();
-                yield return new Gizmo_Radius(registers);
 			}
 		}
 	}

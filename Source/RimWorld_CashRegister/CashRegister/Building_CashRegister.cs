@@ -110,6 +110,10 @@ namespace CashRegister
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (var gizmo in base.GetGizmos()) yield return gizmo;
+           
+            // Gizmo for drawing radius settings
+            var registers = Find.Selector.SelectedObjects.OfType<Building_CashRegister>().ToArray();
+            yield return new Gizmo_Radius(registers);
 
             foreach (var gizmo in tabs.SelectMany(tab => tab.GetGizmos())) yield return gizmo;
         }
