@@ -26,7 +26,7 @@ namespace CashRegister
 				{
 					if (StoreUtility.TryFindBestBetterStorageFor(silver, pawn, pawn.Map, StoreUtility.CurrentStoragePriorityOf(silver), pawn.Faction, out _, out _))
 					{
-						return JobMaker.MakeJob(RegisterUtility.emptyRegisterDef, t, silver);
+						return JobMaker.MakeJob(InternalDefOf.CashRegister_EmptyRegister, t, silver);
 					}
 				}
 			}

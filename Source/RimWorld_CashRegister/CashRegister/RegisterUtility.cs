@@ -9,9 +9,6 @@ namespace CashRegister
 {
     public static class RegisterUtility
     {
-        public static readonly ThingDef cashRegisterDef = DefDatabase<ThingDef>.GetNamedSilentFail("CashRegister_CashRegister");
-        public static readonly JobDef emptyRegisterDef = DefDatabase<JobDef>.GetNamedSilentFail("CashRegister_EmptyRegister");
-        public static readonly SoundDef kachingSoundDef = DefDatabase<SoundDef>.GetNamedSilentFail("CashRegister_Register_Kaching");
         public static readonly AcceptanceReport rejectedNoMods = new AcceptanceReport("TabRegisterShiftsRejectedMissingMods".Translate());
         public static readonly AcceptanceReport rejectedNoWork = new AcceptanceReport("TabRegisterShiftsRejectedNoWork".Translate());
 
@@ -31,7 +28,7 @@ namespace CashRegister
 
         public static Building_CashRegister GetClosestRegister([NotNull]this Pawn pawn)
         {
-            return (Building_CashRegister)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(cashRegisterDef), PathEndMode.Touch, TraverseParms.For(pawn), 90f, x => x.Faction == pawn.Faction, null, 0, 30);
+            return (Building_CashRegister)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(InternalDefOf.CashRegister_CashRegister), PathEndMode.Touch, TraverseParms.For(pawn), 90f, x => x.Faction == pawn.Faction, null, 0, 30);
         }
 
         private static void OnBuildingSpawned(Building building, Map map)
