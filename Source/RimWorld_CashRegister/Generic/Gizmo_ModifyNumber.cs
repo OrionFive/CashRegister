@@ -81,17 +81,17 @@ namespace CashRegister
             var upperSetting = new Rect(rect.x, middleSetting.y - size, size, size);
             var lowerSettings = new Rect(rect.x, middleSetting.yMax, size, size);
 
-            if (Widgets.ButtonImage(middleSetting, CashRegisterContent.ButtonNumberAuto, ButtonColor))
+            if (Widgets.ButtonImage(middleSetting, CashRegisterContent.buttonNumberAuto, ButtonColor))
             {
                 ButtonCenter();
             }
 
-            if (Widgets.ButtonImage(upperSetting, CashRegisterContent.ButtonNumberUp, ButtonColor))
+            if (Widgets.ButtonImage(upperSetting, CashRegisterContent.buttonNumberUp, ButtonColor))
             {
                 ButtonUp();
             }
 
-            if (Widgets.ButtonImage(lowerSettings, CashRegisterContent.ButtonNumberDown, ButtonColor))
+            if (Widgets.ButtonImage(lowerSettings, CashRegisterContent.buttonNumberDown, ButtonColor))
             {
                 ButtonDown();
             }

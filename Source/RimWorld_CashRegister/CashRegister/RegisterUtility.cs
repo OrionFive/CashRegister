@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CashRegister.TableTops;
 using JetBrains.Annotations;
 using Verse;
@@ -20,9 +21,18 @@ namespace CashRegister
             TableTop_Events.onAnyBuildingDespawned.AddListener(OnBuildingDespawned);
         }
 
-        [NotNull]public static IList<Building_CashRegister> GetRegisters(Map map)
+        [NotNull]
+        public static IList<Building_CashRegister> GetRegisters(Map map)
         {
-            if (map == null || !allRegisters.TryGetValue(map, out var list) || list == null) return Array.Empty<Building_CashRegister>();
+            if (map == null) return Array.Empty<Building_CashRegister>();
+
+            if (!allRegisters.TryGetValue(map, out var list) || list == null)
+            {
+                allRegisters.Remove(map);
+                list = map.listerBuildings.AllBuildingsColonistOfClass<Building_CashRegister>().ToList();
+                allRegisters.Add(map, list);
+            }
+
             return list;
         }
 
