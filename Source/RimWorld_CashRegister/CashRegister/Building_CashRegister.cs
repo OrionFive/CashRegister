@@ -201,9 +201,17 @@ namespace CashRegister
 
         public void DrawFieldEdges()
         {
-            fields.Clear();
             if (radius >= InfiniteRadius) return;
 
+            CalculateFields();
+            Color color = radiusColor;
+            color.a = Pulser.PulseBrightness(1f, 0.6f);
+            GenDraw.DrawFieldEdges(fields, color);
+        }
+
+        private void CalculateFields()
+        {
+            fields.Clear();
             if (includeRegion)
             {
                 var cells = this.GetRoom(RegionType.Normal)?.Cells;
@@ -211,10 +219,14 @@ namespace CashRegister
             }
 
             fields.AddRange(GenRadial.RadialCellsAround(Position, radius, true));
-            Color color = radiusColor;
-            color.a = Pulser.PulseBrightness(1f, 0.6f);
-            GenDraw.DrawFieldEdges(fields, color);
-            fields.Clear();
+        }
+
+        public bool GetIsInRange(IntVec3 position)
+        {
+            if (radius >= InfiniteRadius) return true;
+            CalculateFields();
+
+            return fields.Contains(position);
         }
     }
 }
