@@ -5,7 +5,7 @@
     <defName>CashRegister_EmptyRegister</defName>
     <driverClass>CashRegister.JobDriver_EmptyRegister</driverClass>
     <reportString>emptying register.</reportString>
-    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix> <!-- Causes error in CommonSense -->
   </JobDef>
   
 </Defs>

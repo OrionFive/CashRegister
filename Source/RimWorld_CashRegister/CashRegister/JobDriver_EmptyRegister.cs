@@ -22,8 +22,8 @@ namespace CashRegister
 		{
 			this.FailOnDestroyedOrNull(IndexRegister);
 			this.FailOnForbidden(IndexRegister);
-			yield return Toils_Goto.GotoThing(IndexRegister, PathEndMode.Touch);
-			yield return Toils_General.Do(GetSilver);
+			yield return Toils_Goto.GotoThing(IndexRegister, PathEndMode.Touch).FailOnDespawnedNullOrForbidden(IndexSilver);
+            yield return Toils_General.Do(GetSilver).FailOnDespawnedNullOrForbidden(IndexSilver);
 			//yield return Toils_Haul.StartCarryThing(IndexSilver, true).FailOnDestroyedOrNull(IndexSilver);
 			yield return Toils_General.DoAtomic(Haul).FailOnDestroyedOrNull(IndexSilver);
 		}
