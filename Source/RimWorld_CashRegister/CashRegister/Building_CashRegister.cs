@@ -30,6 +30,7 @@ namespace CashRegister
         private bool includeRegion = true;
         public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
         private readonly List<IntVec3> fields = new List<IntVec3>();
+        private int lastCalculateFieldsTick;
 
         public bool IsActive
         {
@@ -70,6 +71,7 @@ namespace CashRegister
             base.SpawnSetup(map, respawningAfterLoad);
             // Make sure every shift has a map
             foreach (var shift in shifts) shift.map ??= Map;
+            onRadiusChanged.AddListener(OnRadiusChanged);
         }
 
         public override void ExposeData()
@@ -105,6 +107,11 @@ namespace CashRegister
             storageSettings = GetNewStorageSettings();
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
             shifts.Add(new Shift{map = Map});
+        }
+
+        private void OnRadiusChanged(Building_CashRegister building)
+        {
+            CalculateFields(true);
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -209,8 +216,11 @@ namespace CashRegister
             GenDraw.DrawFieldEdges(fields, color);
         }
 
-        private void CalculateFields()
+        private void CalculateFields(bool forceRecalculate = false)
         {
+            if (GenTicks.TicksGame <= lastCalculateFieldsTick && !forceRecalculate) return;
+
+            lastCalculateFieldsTick = GenTicks.TicksGame;
             fields.Clear();
             if (includeRegion)
             {
