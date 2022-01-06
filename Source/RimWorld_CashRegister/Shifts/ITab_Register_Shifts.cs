@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Verse;
 using TimetableUtility = CashRegister.Timetable.TimetableUtility;
 
@@ -73,7 +74,7 @@ namespace CashRegister.Shifts
 
 		private void DrawShift(Rect rectTable, Rect rectLabel, Shift shift, ref float height)
 		{
-			var names = shift.assigned.Any() ? shift.assigned.Select(pawn => pawn?.Name.ToStringShort).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
+			var names = shift.assigned.Any() ? shift.assigned.Select(GetPawnName).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
 			var rectNames = new Rect(rectLabel) {width = rectLabel.width * 0.6f};
 			var rectAssign = new Rect(rectLabel) {xMin = rectNames.xMax, height = height};
 			DrawLabel(rectNames, names, out var labelHeight);
@@ -87,7 +88,14 @@ namespace CashRegister.Shifts
 			height = Mathf.Max(height, labelHeight);
 		}
 
-		private static void DrawLabel(Rect rectLabel, string names, out float height)
+        private string GetPawnName(Pawn pawn)
+        {
+            if (pawn == null) return null;
+            if (Register.IsAvailable(pawn)) return pawn.Name.ToStringShort;
+            return pawn.Name.ToStringShort.Colorize(Color.gray);
+        }
+
+        private static void DrawLabel(Rect rectLabel, string names, out float height)
 		{
 			Text.Font = GameFont.Tiny;
 			rectLabel.height = height = Text.CalcHeight(names, rectLabel.width);

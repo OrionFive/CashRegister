@@ -38,7 +38,7 @@ namespace CashRegister
                 // Gets called a lot. Optimized.
                 if (Time.realtimeSinceStartup > lastActiveCheck + 0.7f)
                 {
-                    isActive = shifts.Any(s => s.IsActive && s.assigned.Any(IsCapable));
+                    isActive = shifts.Any(s => s.IsActive && s.assigned.Any(IsAvailable));
                     //foreach (var shift in shifts)
                     //{
                     //    Log.Message($"Shift of {shift.assigned.Select(p => p?.LabelShort).ToCommaList()}: active? {shift.IsActive}");
@@ -49,7 +49,7 @@ namespace CashRegister
             }
         }
 
-        private bool IsCapable(Pawn p)
+        public bool IsAvailable(Pawn p)
         {
             // On this map and not resting or down
             return p?.MapHeld == Map && !p.Downed && (!Settings.inactiveIfEveryoneIsSleeping || !IsSleeping(p));
