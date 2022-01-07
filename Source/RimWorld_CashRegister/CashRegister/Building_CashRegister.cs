@@ -26,11 +26,13 @@ namespace CashRegister
         public bool standby = true;
         protected ITab_Register[] tabs;
         private float lastActiveCheck;
+        private float lastCheckActivePawns;
         private bool isActive;
         private bool includeRegion = true;
         public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
         private readonly List<IntVec3> fields = new List<IntVec3>();
         private int lastCalculateFieldsTick;
+        private readonly HashSet<Pawn> activePawns = new HashSet<Pawn>();
 
         public bool IsActive
         {
@@ -197,7 +199,14 @@ namespace CashRegister
 
         public bool HasToWork(Pawn pawn)
         {
-            return shifts.Any(s => s.timetable.CurrentAssignment(pawn.Map) && s.assigned.Contains(pawn));
+            if (Time.realtimeSinceStartup > lastCheckActivePawns + 0.7f)
+            {
+                lastCheckActivePawns = Time.realtimeSinceStartup;
+                activePawns.Clear();
+                activePawns.AddRange(shifts.Where(s => s.timetable.CurrentAssignment(Map)).SelectMany(s => s.assigned));
+            }
+
+            return activePawns.Contains(pawn);
         }
 
         public void ToggleIncludeRegion()
