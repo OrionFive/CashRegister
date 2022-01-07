@@ -91,8 +91,9 @@ namespace CashRegister.Shifts
         private string GetPawnName(Pawn pawn)
         {
             if (pawn == null) return null;
-            if (Register.IsAvailable(pawn)) return pawn.Name.ToStringShort;
-            return pawn.Name.ToStringShort.Colorize(Color.gray);
+            if (!Register.IsAvailable(pawn)) return pawn.Name.ToStringShort.Colorize(Color.gray);
+            if (Register.HasToWork(pawn)) return pawn.Name.ToStringShort.Colorize(TimeAssignmentDefOf.Work.color * 1.3f);
+            return pawn.Name.ToStringShort;
         }
 
         private static void DrawLabel(Rect rectLabel, string names, out float height)
