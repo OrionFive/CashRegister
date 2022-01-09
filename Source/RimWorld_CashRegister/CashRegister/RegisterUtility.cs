@@ -36,9 +36,9 @@ namespace CashRegister
             return list;
         }
 
-        public static Building_CashRegister GetClosestRegister([NotNull]this Pawn pawn)
+        public static Building_CashRegister GetClosestRegister([NotNull] this IEnumerable<Building_CashRegister> registers, Pawn pawn, float maxDistance = 9999)
         {
-            return (Building_CashRegister)GenClosest.ClosestThingReachable(pawn.Position, pawn.Map, ThingRequest.ForDef(InternalDefOf.CashRegister_CashRegister), PathEndMode.Touch, TraverseParms.For(pawn), 90f, x => x.Faction == pawn.Faction, null, 0, 30);
+            return (Building_CashRegister)GenClosest.ClosestThing_Global_Reachable(pawn.Position, pawn.Map, registers, PathEndMode.Touch, TraverseParms.For(pawn), maxDistance);
         }
 
         private static void OnBuildingSpawned(Building building, Map map)
