@@ -74,7 +74,7 @@ namespace CashRegister.Shifts
 
 		private void DrawShift(Rect rectTable, Rect rectLabel, Shift shift, ref float height)
 		{
-			var names = shift.assigned.Any() ? shift.assigned.Select(GetPawnName).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
+			var names = shift.assigned.Any() ? shift.assigned.Select(pawn => GetPawnName(shift, pawn)).ToCommaList() : (string)"TabRegisterShiftsEmpty".Translate();
 			var rectNames = new Rect(rectLabel) {width = rectLabel.width * 0.6f};
 			var rectAssign = new Rect(rectLabel) {xMin = rectNames.xMax, height = height};
 			DrawLabel(rectNames, names, out var labelHeight);
@@ -88,9 +88,10 @@ namespace CashRegister.Shifts
 			height = Mathf.Max(height, labelHeight);
 		}
 
-        private string GetPawnName(Pawn pawn)
+        private string GetPawnName(Shift shift, Pawn pawn)
         {
             if (pawn == null) return null;
+            if (!shift.IsActive) return pawn.Name.ToStringShort.Colorize(TimeAssignmentDefOf.Sleep.color * 1.3f);
             if (!Register.IsAvailable(pawn)) return pawn.Name.ToStringShort.Colorize(Color.gray);
             if (Register.HasToWork(pawn)) return pawn.Name.ToStringShort.Colorize(TimeAssignmentDefOf.Work.color * 1.3f);
             return pawn.Name.ToStringShort;
