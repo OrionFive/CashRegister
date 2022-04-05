@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_EmptyRegister.label>空の清算レジ</CashRegister_EmptyRegister.label>
+  <CashRegister_EmptyRegister.verb>空の清算レジ</CashRegister_EmptyRegister.verb>
+  <CashRegister_EmptyRegister.gerund>レジを空にしています</CashRegister_EmptyRegister.gerund>
+
+</LanguageData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_CashRegister.label>清算レジ</CashRegister_CashRegister.label>
+  <CashRegister_CashRegister.description>清算レジ。ウェイターの仕事場です。ここからあなたのお店を管理できます。</CashRegister_CashRegister.description>
+  <Blueprint_CashRegister_CashRegister.label>清算レジ (設計図/blueprint)</Blueprint_CashRegister_CashRegister.label>
+  <Blueprint_Install_CashRegister_CashRegister.label>清算レジ (設計図/blueprint)</Blueprint_Install_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.label>清算レジ (設計図/blueprint)</Frame_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.description>清算レジ。ウェイターの仕事場です。ここからあなたのお店を管理できます。</Frame_CashRegister_CashRegister.description>
+
+</LanguageData>
