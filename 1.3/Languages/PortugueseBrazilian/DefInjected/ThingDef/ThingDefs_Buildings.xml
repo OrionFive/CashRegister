@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_CashRegister.label>caixa registradora</CashRegister_CashRegister.label>
+  <CashRegister_CashRegister.description>Uma caixa registradora. Um local de trabalho para seus garçons. Daqui você pode controlar seu restaurante.</CashRegister_CashRegister.description>
+  <Blueprint_CashRegister_CashRegister.label>caixa registradora (blueprint)</Blueprint_CashRegister_CashRegister.label>
+  <Blueprint_Install_CashRegister_CashRegister.label>caixa registradora (blueprint)</Blueprint_Install_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.label>caixa registradora (blueprint)</Frame_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.description>uma caixa registradora. local de trabalho para seus garçons. daqui você pode controlar seu restaurante.</Frame_CashRegister_CashRegister.description>
+
+</LanguageData>
