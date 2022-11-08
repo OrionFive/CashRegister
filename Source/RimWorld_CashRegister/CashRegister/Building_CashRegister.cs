@@ -247,5 +247,10 @@ namespace CashRegister
 
             return fields.Contains(position);
         }
-    }
+
+        public void Notify_SettingsChanged()
+        {
+            
+        }
+  }
 }

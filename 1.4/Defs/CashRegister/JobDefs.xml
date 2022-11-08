@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <JobDef>
+    <defName>CashRegister_EmptyRegister</defName>
+    <driverClass>CashRegister.JobDriver_EmptyRegister</driverClass>
+    <reportString>emptying register.</reportString>
+    <allowOpportunisticPrefix>false</allowOpportunisticPrefix> <!-- Causes error in CommonSense -->
+  </JobDef>
+  
+</Defs>

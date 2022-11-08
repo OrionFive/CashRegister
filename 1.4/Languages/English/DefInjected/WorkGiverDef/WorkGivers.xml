@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_EmptyRegister.label>empty register</CashRegister_EmptyRegister.label>
+  <CashRegister_EmptyRegister.verb>empty register</CashRegister_EmptyRegister.verb>
+  <CashRegister_EmptyRegister.gerund>emptying register</CashRegister_EmptyRegister.gerund>
+
+</LanguageData>
