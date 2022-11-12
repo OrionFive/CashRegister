@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_EmptyRegister.label>vider la caisse</CashRegister_EmptyRegister.label>
+  <CashRegister_EmptyRegister.verb>vider la caisse</CashRegister_EmptyRegister.verb>
+  <CashRegister_EmptyRegister.gerund>vide la caisse</CashRegister_EmptyRegister.gerund>
+
+</LanguageData>

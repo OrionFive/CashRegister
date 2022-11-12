@@ -22,7 +22,7 @@ namespace CashRegister
         protected Gizmo_ModifyNumber(T[] selection)
         {
             this.selection = selection;
-            order = -25;
+            Order = -25;
         }
 
         public override bool GroupsWith(Gizmo other)

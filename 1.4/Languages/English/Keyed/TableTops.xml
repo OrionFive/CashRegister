@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  
+	<!-- Tabletop -->
+	<MustPlaceOnTable>Must be placed on a table.</MustPlaceOnTable>
+	<MustPlaceOnFreeSurface>Must be placed on clear surface.</MustPlaceOnFreeSurface>
+	
+	<!-- Shifts -->
+	<TabRegisterShifts>Shifts</TabRegisterShifts>
+	<TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+	<TabRegisterShiftsRemove>×</TabRegisterShiftsRemove>
+	<TabRegisterShiftsEmpty>No one</TabRegisterShiftsEmpty>
+	<TabRegisterShiftsAssign>Assign</TabRegisterShiftsAssign>
+	<TabRegisterShiftsRejectedMissingMods>No mod uses this register</TabRegisterShiftsRejectedMissingMods>
+	<TabRegisterShiftsRejectedNoWork>Doesn't do this kind of work</TabRegisterShiftsRejectedNoWork>
+	<TabRegisterShiftsStandby>Stand by</TabRegisterShiftsStandby>
+	<TabRegisterShiftsStandbyDesc>Colonists with an active shift will wait here. Only more important tasks have priority.</TabRegisterShiftsStandbyDesc>
+	
+	<!-- Settings -->
+	<InactiveIfEveryoneIsSleeping>Inactive if everyone sleeps</InactiveIfEveryoneIsSleeping>
+	<InactiveIfEveryoneIsSleepingDesc>This register and all active shifts are disabled when all currently assigned colonists are sleeping. If they are downed or traveling, the same happens either way.</InactiveIfEveryoneIsSleepingDesc>
+	<RegisterRadiusTitle>Radius</RegisterRadiusTitle>
+	<RegisterRadiusValue>Radius</RegisterRadiusValue>
+	<RegisterRadiusIncludeRegion>Include room</RegisterRadiusIncludeRegion>
+	
+</LanguageData>
