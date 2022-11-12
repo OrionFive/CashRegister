@@ -247,5 +247,11 @@ namespace CashRegister
 
             return fields.Contains(position);
         }
-    }
+
+        public void Notify_SettingsChanged()
+        {
+            //New method in 1.4
+            //Probably no need to implement however it may change after check with gastronomy
+        }
+  }
 }
