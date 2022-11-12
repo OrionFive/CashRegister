@@ -18,5 +18,5 @@
   <!-- </suggests> -->
   <showCrossPromotions>true</showCrossPromotions>
   <manifestUri>https://raw.githubusercontent.com/OrionFive/CashRegister/master/About/Manifest.xml</manifestUri>
-  <downloadUri>https://github.com/OrionFive/CashRegister/releases</downloadUri>
+  <downloadUri>https://github.com/OrionFive/CashRegister/tags</downloadUri>
 </Manifest>
