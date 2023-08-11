@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Tabletop -->
+  <MustPlaceOnTable>Deve ser colocado sobre uma mesa.</MustPlaceOnTable>
+  <MustPlaceOnFreeSurface>Deve ser colocado em um espaço livre.</MustPlaceOnFreeSurface>
+
+  <!-- Shifts -->
+  <TabRegisterShifts>Turnos</TabRegisterShifts>
+  <TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+  <TabRegisterShiftsRemove>×</TabRegisterShiftsRemove>
+  <TabRegisterShiftsEmpty>Ninguém</TabRegisterShiftsEmpty>
+  <TabRegisterShiftsAssign>Atribuir</TabRegisterShiftsAssign>
+  <TabRegisterShiftsRejectedMissingMods>Nenhum mod usa essa caixa</TabRegisterShiftsRejectedMissingMods>
+  <TabRegisterShiftsRejectedNoWork>Não faz este tipo de trabalho</TabRegisterShiftsRejectedNoWork>
+  <TabRegisterShiftsStandby>Espera</TabRegisterShiftsStandby>
+  <TabRegisterShiftsStandbyDesc>Os colonos com um turno ativo esperarão aqui. Apenas as tarefas mais importantes têm prioridade.</TabRegisterShiftsStandbyDesc>
+
+  <!-- Settings -->
+  <InactiveIfEveryoneIsSleeping>Inativo se todos dormirem</InactiveIfEveryoneIsSleeping>
+  <InactiveIfEveryoneIsSleepingDesc>Esse caixa e todos os turnos ativos são desativados quando todos os colonos atribuídos atualmente estão dormindo. Se eles estiverem caídos ou viajando, o mesmo acontece de qualquer maneira.</InactiveIfEveryoneIsSleepingDesc>
+   <RegisterRadiusTitle>Alcance</RegisterRadiusTitle>
+  <RegisterRadiusValue>Raio</RegisterRadiusValue>
+  <RegisterRadiusIncludeRegion>Incluir sala</RegisterRadiusIncludeRegion> 
+
+</LanguageData>
