@@ -33,6 +33,7 @@ namespace CashRegister
         private readonly List<IntVec3> fields = new List<IntVec3>();
         private int lastCalculateFieldsTick;
         private readonly HashSet<Pawn> activePawns = new HashSet<Pawn>();
+        public List<IntVec3> Fields => fields.ToList();
 
         public bool IsActive
         {
@@ -212,6 +213,10 @@ namespace CashRegister
         public void ToggleIncludeRegion()
         {
             includeRegion = !includeRegion;
+            if (this.GetRoom().IsHuge && includeRegion)
+            {
+                includeRegion = false;
+            }
             onRadiusChanged.Invoke(this);
         }
 
