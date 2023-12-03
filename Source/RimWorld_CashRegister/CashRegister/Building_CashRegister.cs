@@ -49,6 +49,7 @@ namespace CashRegister
                     //}
                     lastActiveCheck = Time.realtimeSinceStartup;
                 }
+
                 return isActive;
             }
         }
@@ -109,7 +110,7 @@ namespace CashRegister
             base.PostMake();
             storageSettings = GetNewStorageSettings();
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
-            shifts.Add(new Shift{map = Map});
+            shifts.Add(new Shift { map = Map });
         }
 
         private void OnRadiusChanged(Building_CashRegister building)
@@ -120,7 +121,7 @@ namespace CashRegister
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (var gizmo in base.GetGizmos()) yield return gizmo;
-           
+
             // Gizmo for drawing radius settings
             var registers = Find.Selector.SelectedObjects.OfType<Building_CashRegister>().ToArray();
             yield return new Gizmo_Radius(registers);
@@ -189,7 +190,7 @@ namespace CashRegister
         public AcceptanceReport CanAssignToShift(Pawn pawn)
         {
             if (tabs.Length <= 1) return RegisterUtility.rejectedNoMods;
-            
+
             foreach (var tab in tabs)
             {
                 if( tab.CanAssignToShift(pawn)) return AcceptanceReport.WasAccepted;
@@ -213,10 +214,7 @@ namespace CashRegister
         public void ToggleIncludeRegion()
         {
             includeRegion = !includeRegion;
-            if (this.GetRoom().IsHuge && includeRegion)
-            {
-                includeRegion = false;
-            }
+            if (includeRegion && this.GetRoom()?.IsHuge == true) includeRegion = false;
             onRadiusChanged.Invoke(this);
         }
 
