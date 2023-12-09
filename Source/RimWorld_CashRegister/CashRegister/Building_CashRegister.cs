@@ -14,25 +14,31 @@ namespace CashRegister
 
     public class Building_CashRegister : Building_TableTop, IHaulDestination, IThingHolder
     {
-        public static Color radiusColor = new Color(115 / 256f, 203 / 256f, 115 / 256f);
         public const int RadiusStep = 3;
-        public const int InfiniteRadius = 15*RadiusStep; // = 45; At around 55 drawing radius breaks anyway
-        private StorageSettings storageSettings;
+        public const int InfiniteRadius = 15 * RadiusStep; // = 45; At around 55 drawing radius breaks anyway
+        public static Color radiusColor = new Color(115 / 256f, 203 / 256f, 115 / 256f);
+        private readonly HashSet<Pawn> activePawns = new HashSet<Pawn>();
+        private readonly List<IntVec3> fields = new List<IntVec3>();
+        public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
+        private bool includeRegion = true;
         protected ThingOwner innerContainer;
+        private bool isActive;
+        private float lastActiveCheck;
+        private int lastCalculateFieldsTick;
+        private float lastCheckActivePawns;
+        private float radius = 20;
 
         public List<Shift> shifts = new List<Shift>();
-        public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
-        private float radius = 20;
         public bool standby = true;
+        private StorageSettings storageSettings;
         protected ITab_Register[] tabs;
-        private float lastActiveCheck;
-        private float lastCheckActivePawns;
-        private bool isActive;
-        private bool includeRegion = true;
-        public readonly UnityEventCashRegister onRadiusChanged = new UnityEventCashRegister();
-        private readonly List<IntVec3> fields = new List<IntVec3>();
-        private int lastCalculateFieldsTick;
-        private readonly HashSet<Pawn> activePawns = new HashSet<Pawn>();
+
+        public Building_CashRegister()
+        {
+            innerContainer = new ThingOwner<Thing>(this, false);
+        }
+
+        public CompAssignableToPawn_Shifts CompAssignableToPawn => GetComp<CompAssignableToPawn_Shifts>();
         public List<IntVec3> Fields => fields.ToList();
 
         public bool IsActive
@@ -54,21 +60,42 @@ namespace CashRegister
             }
         }
 
-        public bool IsAvailable(Pawn p)
+        public bool ShouldEmpty => GetDirectlyHeldThings()?.Any(t => t.def == ThingDefOf.Silver) == true;
+
+        public float Radius
         {
+            get => radius;
+            set => ChangeRadius(value);
+        }
+
+        public bool IncludeRegion => includeRegion;
+
+        public StorageSettings GetStoreSettings() => storageSettings ??= GetNewStorageSettings();
+
+        public StorageSettings GetParentStoreSettings() => def.building.fixedStorageSettings;
+
+        public bool StorageTabVisible => false;
+
+        public bool Accepts(Thing t) => t.def == ThingDefOf.Silver;
+
+        public void Notify_SettingsChanged()
+        {
+            //New method in 1.4
+            //Probably no need to implement however it may change after check with gastronomy
+        }
+
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
+        }
+
+        public ThingOwner GetDirectlyHeldThings() => innerContainer ??= new ThingOwner<Thing>(this, false);
+
+        public bool IsAvailable(Pawn p) =>
             // On this map and not resting or down
-            return p?.MapHeld == Map && !p.Downed && (!Settings.inactiveIfEveryoneIsSleeping || !IsSleeping(p));
-        }
+            p?.MapHeld == Map && !p.Downed && (!Settings.inactiveIfEveryoneIsSleeping || !IsSleeping(p));
 
-        private static bool IsSleeping(Pawn pawn)
-        {
-            return !pawn.health.capacities.CanBeAwake || pawn.CurJobDef == JobDefOf.LayDown || pawn.CurJobDef == JobDefOf.LayDownResting;
-        }
-
-        public Building_CashRegister()
-        {
-            innerContainer = new ThingOwner<Thing>(this, false);
-        }
+        private static bool IsSleeping(Pawn pawn) => !pawn.health.capacities.CanBeAwake || pawn.CurJobDef == JobDefOf.LayDown || pawn.CurJobDef == JobDefOf.LayDownResting;
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -99,10 +126,7 @@ namespace CashRegister
         {
             base.PostMapInit();
             tabs ??= def.inspectorTabsResolved.OfType<ITab_Register>().ToArray();
-            foreach (var tab in tabs)
-            {
-                tab.PostMapInit();
-            }
+            foreach (var tab in tabs) tab.PostMapInit();
             CalculateFields(true);
         }
 
@@ -139,28 +163,12 @@ namespace CashRegister
 
         public override string GetInspectString() => innerContainer?.ContentsString.CapitalizeFirst();
 
-        public StorageSettings GetStoreSettings() => storageSettings ??= GetNewStorageSettings();
-
         private StorageSettings GetNewStorageSettings()
         {
             var s = new StorageSettings(this);
-            if (def.building.defaultStorageSettings != null)
-            {
-                s.CopyFrom(def.building.defaultStorageSettings);
-            }
+            if (def.building.defaultStorageSettings != null) s.CopyFrom(def.building.defaultStorageSettings);
 
             return s;
-        }
-
-        public StorageSettings GetParentStoreSettings() => def.building.fixedStorageSettings;
-
-        public bool StorageTabVisible => false;
-        public bool ShouldEmpty => GetDirectlyHeldThings()?.Any(t => t.def == ThingDefOf.Silver) == true;
-
-        public float Radius
-        {
-            get => radius;
-            set => ChangeRadius(value);
         }
 
         private void ChangeRadius(float value)
@@ -169,15 +177,7 @@ namespace CashRegister
             onRadiusChanged.Invoke(this);
         }
 
-        public bool IncludeRegion => includeRegion;
 
-        public bool Accepts(Thing t) => t.def == ThingDefOf.Silver;
-
-        public void GetChildHolders(List<IThingHolder> outChildren) => ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, GetDirectlyHeldThings());
-
-        public ThingOwner GetDirectlyHeldThings() => innerContainer ??= new ThingOwner<Thing>(this, false);
-
-        
         //public override IEnumerable<Gizmo> GetGizmos()
         //{
         //    foreach (var gizmo in base.GetGizmos())
@@ -193,9 +193,8 @@ namespace CashRegister
             if (tabs.Length <= 1) return RegisterUtility.rejectedNoMods;
 
             foreach (var tab in tabs)
-            {
-                if( tab.CanAssignToShift(pawn)) return AcceptanceReport.WasAccepted;
-            }
+                if (tab.CanAssignToShift(pawn))
+                    return AcceptanceReport.WasAccepted;
 
             return RegisterUtility.rejectedNoWork;
         }
@@ -224,7 +223,7 @@ namespace CashRegister
             if (radius >= InfiniteRadius) return;
 
             CalculateFields();
-            Color color = radiusColor;
+            var color = radiusColor;
             color.a = Pulser.PulseBrightness(1f, 0.6f);
             GenDraw.DrawFieldEdges(fields, color);
         }
@@ -251,11 +250,5 @@ namespace CashRegister
 
             return fields.Contains(position);
         }
-
-        public void Notify_SettingsChanged()
-        {
-            //New method in 1.4
-            //Probably no need to implement however it may change after check with gastronomy
-        }
-  }
+    }
 }
