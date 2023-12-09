@@ -103,6 +103,7 @@ namespace CashRegister
             {
                 tab.PostMapInit();
             }
+            CalculateFields(true);
         }
 
         public override void PostMake()
