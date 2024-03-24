@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_CashRegister.label>cash register</CashRegister_CashRegister.label>
+  <CashRegister_CashRegister.description>A cash register. Workplace for your waiters. From here you can control your restaurant.</CashRegister_CashRegister.description>
+  <Blueprint_CashRegister_CashRegister.label>cash register (blueprint)</Blueprint_CashRegister_CashRegister.label>
+  <Blueprint_Install_CashRegister_CashRegister.label>cash register (blueprint)</Blueprint_Install_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.label>cash register (blueprint)</Frame_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.description>a cash register. workplace for your waiters. from here you can control your restaurant.</Frame_CashRegister_CashRegister.description>
+
+</LanguageData>
