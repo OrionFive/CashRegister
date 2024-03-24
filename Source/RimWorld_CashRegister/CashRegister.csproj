@@ -45,9 +45,9 @@
     </None>
   </ItemGroup>
 
-  <PropertyGroup>
-	<PublicizeAll>true</PublicizeAll>
-  </PropertyGroup>
+  <ItemGroup>
+	<Publicize Include="Assembly-CSharp" />
+  </ItemGroup>
   <PropertyGroup>
 	<PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
   </PropertyGroup>
