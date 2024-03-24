@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <WorkGiverDef>
+    <defName>CashRegister_EmptyRegister</defName>
+    <label>empty register</label>
+    <giverClass>CashRegister.WorkGiver_EmptyRegister</giverClass>
+    <workType>Hauling</workType>
+    <priorityInType>18</priorityInType>
+    <!-- <fixedBillGiverDefs> -->
+      <!-- <li>CashRegister_CashRegister</li> -->
+      <!-- <li>CashRegister_DiningSpot</li> -->
+    <!-- </fixedBillGiverDefs> -->
+    <verb>empty register</verb>
+    <gerund>emptying register</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+</Defs>
