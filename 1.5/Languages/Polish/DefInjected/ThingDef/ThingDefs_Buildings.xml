@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CashRegister_CashRegister.label>kasa fiskalna</CashRegister_CashRegister.label>
+  <CashRegister_CashRegister.description>Kasa fiskalna. Miejsce pracy dla twoich kelnerów. Stąd możesz zarządzać swoją restauracją.</CashRegister_CashRegister.description>
+  <Blueprint_CashRegister_CashRegister.label>kasa fiskalna (projekt)</Blueprint_CashRegister_CashRegister.label>
+  <Blueprint_Install_CashRegister_CashRegister.label>kasa fiskalna (projekt)</Blueprint_Install_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.label>kasa fiskalna (projekt)</Frame_CashRegister_CashRegister.label>
+  <Frame_CashRegister_CashRegister.description>kasa fiskalna. miejsce pracy dla twoich kelnerów. stąd możesz zarządzać swoją restauracją.</Frame_CashRegister_CashRegister.description>
+
+</LanguageData>
