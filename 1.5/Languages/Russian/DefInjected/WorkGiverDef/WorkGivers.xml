@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: empty register -->
+  <CashRegister_EmptyRegister.label>опустошать кассу</CashRegister_EmptyRegister.label>
+  <!-- EN: empty register -->
+  <CashRegister_EmptyRegister.verb>опустошить кассу</CashRegister_EmptyRegister.verb>
+  <!-- EN: emptying register -->
+  <CashRegister_EmptyRegister.gerund>опустошить</CashRegister_EmptyRegister.gerund>
+
+</LanguageData>
