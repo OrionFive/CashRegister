@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: cash register -->
+  <CashRegister_CashRegister.label>кассовый аппарат</CashRegister_CashRegister.label>
+  <!-- EN: A cash register. Workplace for your waiters. From here you can control your restaurant. -->
+  <CashRegister_CashRegister.description>Рабочее место официантов из мода Gastronomy и продавцов из Hospitality: Storefront. Тут можно управлять вашими ресторанами и магазинами.</CashRegister_CashRegister.description>
+
+</LanguageData>

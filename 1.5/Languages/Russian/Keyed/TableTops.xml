@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!-- EN: Must be placed on a table.-->
+  <MustPlaceOnTable>Должно быть размещено на столе.</MustPlaceOnTable>
+  <!-- EN: Must be placed on clear surface.-->
+  <MustPlaceOnFreeSurface>Должно быть размещено на чистой поверхности.</MustPlaceOnFreeSurface>
+
+  <!-- EN: Shifts-->
+  <TabRegisterShifts>Смены</TabRegisterShifts>
+  <!-- EN: +-->
+  <TabRegisterShiftsAdd>+</TabRegisterShiftsAdd>
+  <!-- EN: ×-->
+  <TabRegisterShiftsRemove>×</TabRegisterShiftsRemove>
+  <!-- EN: No one-->
+  <TabRegisterShiftsEmpty>Никого</TabRegisterShiftsEmpty>
+  <!-- EN: Assign-->
+  <TabRegisterShiftsAssign>Назначить</TabRegisterShiftsAssign>
+  <!-- EN: No mod uses this register-->
+  <TabRegisterShiftsRejectedMissingMods>Нет модов, использующих кассовый аппарат</TabRegisterShiftsRejectedMissingMods>
+  <!-- EN: Doesn't do this kind of work-->
+  <TabRegisterShiftsRejectedNoWork>Не может выполнять работу такого типа</TabRegisterShiftsRejectedNoWork>
+  <!-- EN: Stand by-->
+  <TabRegisterShiftsStandby>Ожидание работы</TabRegisterShiftsStandby>
+  <!-- EN: Colonists with an active shift will wait here. Only more important tasks have priority.-->
+  <TabRegisterShiftsStandbyDesc>Назначенный поселенец будет ждать работу здесь, пока активна его рабочая смена. Но если возникнут более критические задачи, то они будут выполнены в приоритетном порядке.</TabRegisterShiftsStandbyDesc>
+  
+  <!-- Settings -->
+  <!-- EN: Inactive if everyone sleeps-->
+  <InactiveIfEveryoneIsSleeping>Неактивно, если все спят</InactiveIfEveryoneIsSleeping>
+  <!-- EN: This register and all active shifts are disabled when all currently assigned colonists are sleeping. If they are downed or traveling, the same happens either way.-->
+  <InactiveIfEveryoneIsSleepingDesc>Когда все назначенные на работу поселенцы спят, этот кассовый аппарат и все активные рабочие смены автоматически отключаются. То же самое происходит, если они в путешествии или обездвижены.</InactiveIfEveryoneIsSleepingDesc>
+  <!-- EN: Radius-->
+  <RegisterRadiusTitle>Радиус</RegisterRadiusTitle>
+  <!-- EN: Radius-->
+  <RegisterRadiusValue>Радиус</RegisterRadiusValue>
+  <!-- EN: Include room-->
+  <RegisterRadiusIncludeRegion>Включ. комнату</RegisterRadiusIncludeRegion>
+
+</LanguageData>
